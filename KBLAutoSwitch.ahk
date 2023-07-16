@@ -699,7 +699,7 @@ shellMessage(wParam, lParam) { ; 接受系统窗口回调消息切换输入法, 
 		SetTimer, Label_SetTimer_ResetshellMessageFlag,-500
 		Gosub, Label_Shell_KBLSwitch
 		If !WinActive("ahk_group NoTwiceSwitchAppList_ahk_group")
-			SetTimer, Label_Shell_KBLSwitch, -100
+			SetTimer, Label_Shell_KBLSwitch, -700 ;增加到700毫秒，原始为100毫秒太短了，如果打开窗口较慢此切换代码有可能会起不到作用，原理及说明：https://github.com/flyinclouds/KBLAutoSwitch/issues/35
 	}Else If (wParam=56){
 		NextChangeFlag := 1
 		lastKBLCode56 := getIMEKBL(gl_Active_IMEwin_id)
