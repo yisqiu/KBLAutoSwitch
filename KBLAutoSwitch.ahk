@@ -2500,6 +2500,13 @@ Set_English: ; 当前窗口设为英文
 Return
 
 Toggle_CN_CNEN: ; 切换中英文(中文)
+	;解决当搜狗输入法输入框出现的时候按shift不切换输入法：https://github.com/flyinclouds/KBLAutoSwitch/issues/13
+	DetectHiddenWindows,off ;https://www.autoahk.com/archives/41508
+	if (WinExist("ahk_class SoPY_Comp")) {
+	return
+	}
+	DetectHiddenWindows,on
+	;解决当搜狗输入法输入框出现的时候按shift不切换输入法：https://github.com/flyinclouds/KBLAutoSwitch/issues/13
 	If (TarHotFunFlag=0 && Outer_InputKey_Compatible=1 && A_ThisHotkey!="" && A_PriorKey!=RegExReplace(A_ThisHotkey, "iS)(~|\s|up|down)", ""))
 		Return
 	KBLState := (getIMEKBL(gl_Active_IMEwin_id)!=EN_Code?(getIMECode(gl_Active_IMEwin_id)!=0?0:1):2)
