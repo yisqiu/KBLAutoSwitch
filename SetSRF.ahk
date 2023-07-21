@@ -104,7 +104,7 @@ getIMECode(win_id:="") { ; 获取激活窗口键盘布局中英文状态
 return
 
 
-#IfWinNotActive, ahk_exe code.exe ; 仅在 code.exe 激活时生效
+#IfWinActive, ahk_exe code.exe ; 仅在 code.exe 激活时生效
 ; ::;::
 ; Send, `{;}
 $+a:: 
